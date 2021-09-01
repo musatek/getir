@@ -1,13 +1,16 @@
 package com.getir.entity;
 
+import com.getir.model.dto.BookDTO;
+import com.getir.model.dto.BookLightDTO;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-
-import com.getir.model.dto.BookDTO;
-import lombok.*;
-
 import java.math.BigDecimal;
 
 @Entity
@@ -58,5 +61,15 @@ public class Book {
                 ", cost=" + cost +
                 ", remainingStock=" + remainingStock +
                 '}';
+    }
+
+    public BookLightDTO toLightDTO(Book book) {
+
+        BookLightDTO lightDTO = new BookLightDTO();
+        lightDTO.setName(getName());
+        lightDTO.setCost(getCost());
+        lightDTO.setAuthor(getAuthor());
+
+        return lightDTO;
     }
 }

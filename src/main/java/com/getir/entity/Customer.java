@@ -1,11 +1,19 @@
 package com.getir.entity;
 
-import lombok.*;
+import com.getir.model.dto.CustomerDTO;
+import com.getir.model.dto.CustomerLightDTO;
+import com.getir.model.dto.OrderDTO;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Getter
@@ -39,5 +47,29 @@ public class Customer {
                 ", email='" + email + '\'' +
                 ", orderList=" + orderList +
                 '}';
+    }
+    public CustomerDTO toDTO(Customer customer) {
+
+        CustomerDTO dto = new CustomerDTO();
+        dto.setId(getId());
+        dto.setUsername(getUsername());
+        dto.setEmail(getEmail());
+        List<OrderDTO> orderDTOS = new ArrayList<>();
+
+        if(Objects.nonNull(getOrderList()))
+            getOrderList().forEach(order -> orderDTOS.add(order.toDTO(order)));
+
+        dto.setOrderList(orderDTOS);
+
+        return dto;
+    }
+
+    public CustomerLightDTO toLightDTO(Customer customer) {
+
+        CustomerLightDTO lightDTO = new CustomerLightDTO();
+        lightDTO.setUsername(getUsername());
+        lightDTO.setEmail(getEmail());
+
+        return lightDTO;
     }
 }

@@ -1,11 +1,19 @@
 package com.getir.entity;
 
-import lombok.*;
+import com.getir.model.dto.BookDTO;
+import com.getir.model.dto.BookLightDTO;
+import com.getir.model.dto.OrderDTO;
+import com.getir.model.dto.OrderLightDTO;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotEmpty;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -49,5 +57,37 @@ public class Order {
                 ", bookList=" + bookList +
                 ", totalBookCount=" + totalBookCount +
                 '}';
+    }
+
+    public OrderDTO toDTO(Order order) {
+
+        OrderDTO dto = new OrderDTO();
+        dto.setId(order.getId());
+        dto.setTotalCost(order.getTotalCost());
+        dto.setDateCreated(order.getDateCreated());
+        dto.setCustomerId(order.getCustomerId());
+        dto.setTotalBookCount(order.getTotalBookCount());
+
+        List<BookDTO> bookDTOS = new ArrayList<>();
+        order.getBookList().forEach(book -> bookDTOS.add(book.toDTO(book)));
+
+        dto.setBookList(bookDTOS);
+
+        return dto;
+    }
+
+    public OrderLightDTO toLightDTO(Order order) {
+
+        OrderLightDTO lightDTO = new OrderLightDTO();
+        lightDTO.setDateCreated(order.getDateCreated());
+        lightDTO.setTotalCost(order.getTotalCost());
+
+        List<BookLightDTO> bookLightDTOS = new ArrayList<>();
+        order.getBookList().forEach(book -> bookLightDTOS.add(book.toLightDTO(book)));
+
+        lightDTO.setBookList(bookLightDTOS);
+
+        return lightDTO;
+
     }
 }

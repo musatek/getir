@@ -1,18 +1,20 @@
 package com.getir.model.response;
 
-import com.getir.model.dto.BookDTO;
+import com.getir.model.dto.OrderDTO;
 import com.getir.model.enums.Status;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.List;
 
 @Getter
 @Setter
 @ToString
-public class BookResponse {
+public class OrderListResponse {
 
-    private BookDTO book;
-
+    private List<OrderDTO> orders;
     private Status status;
+
+
 }

@@ -4,19 +4,15 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.math.BigDecimal;
+
 @Getter
 @Setter
 @ToString
-public class BookDTO {
-
-    private int id;
+public class BookLightDTO {
 
     private String name;
-
     private String author;
-
-    private Double cost;
-
-    private Long remainingStock;
+    private BigDecimal cost;
 
 }
