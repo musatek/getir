@@ -12,5 +12,7 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
 
     List<Order> findByCustomerId(int id, Pageable pageable);
 
+    List<Order> findByCustomerId(int id);
+
     List<Order> getAllByDateCreatedBetween(Date startDate, Date endDate);
 }
