@@ -3,6 +3,7 @@ package com.getir.service;
 import com.getir.model.request.BookCreateRequest;
 import com.getir.model.request.BookUpdateRequest;
 import com.getir.model.response.BookResponse;
+import com.getir.repository.BookRepository;
 import com.getir.service.impl.BookServiceImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -10,19 +11,19 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.math.BigDecimal;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-//@RunWith(MockitoJUnitRunner.class)
+@RunWith(MockitoJUnitRunner.class)
 class BookServiceTest {
 
-    @MockBean
+    @InjectMocks
     private BookServiceImpl bookService;
 
-    //@Test
+    @Mock
+    private BookRepository bookRepository;
+
+    @Test
     public void it_should_save_book(){
 
         BookCreateRequest request = new BookCreateRequest();
@@ -38,7 +39,7 @@ class BookServiceTest {
 
     }
 
-    //@Test
+    @Test
     public void it_should_update_book(){
 
         BookUpdateRequest request = new BookUpdateRequest();
