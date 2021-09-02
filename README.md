@@ -54,11 +54,7 @@ After get project cd to project folder then open terminal here and run the
 ```mvn clean package``` 
 command. If you are using STS/Eclipse IDE, then Right Click on your project » Run As » Maven build… » Goals: 
 ```clean package``` 
-» Run. This will build our project and running tests after that create an executable JAR file of application and put it within the "targe"t folder.
-
-For run application with jar, run this command in terminal;
-
-```java -jar target/getir-0.0.1-SNAPSHOT.jar```
+» Run. This will build our project and running tests after that create an executable JAR file of application and put it within the target folder.
 
 ## Testing Application
 
